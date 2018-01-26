@@ -30,6 +30,6 @@ spec:
       volumes:
       - name: dirty-cups-frontend-volume
         hostPath:
-          path: /hosthome/max/Dev/dirty-cups/dirty-cups-frontend
+          path: /hosthome/dean/Code/dirty-cups-frontend
       imagePullSecrets:
           - name: hycsecret

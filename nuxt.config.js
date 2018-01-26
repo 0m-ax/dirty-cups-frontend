@@ -7,7 +7,7 @@ module.exports = {
   */
   watchers: {
     webpack: {
-      poll: true
+      poll: 1000
     }
   },
   head: {
@@ -57,12 +57,12 @@ module.exports = {
         poll: true
       }
       if (ctx.isDev && ctx.isClient) {
-        config.module.rules.push({
-          enforce: 'pre',
-          test: /\.(js|vue)$/,
-          loader: 'eslint-loader',
-          exclude: /(node_modules)/
-        })
+        // config.module.rules.push({
+        //   enforce: 'pre',
+        //   test: /\.(js|vue)$/,
+        //   loader: 'eslint-loader',
+        //   exclude: /(node_modules)/
+        // })
       }
       if (ctx.isServer) {
         config.externals = [
