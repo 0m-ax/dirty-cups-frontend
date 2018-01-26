@@ -5,6 +5,11 @@ module.exports = {
   /*
   ** Headers of the page
   */
+  watchers: {
+    webpack: {
+      poll: true
+    }
+  },
   head: {
     title: 'dirty-cups-frontend',
     meta: [
@@ -47,6 +52,10 @@ module.exports = {
     ** Run ESLint on save
     */
     extend (config, ctx) {
+      config.watchOptions= {
+        aggregateTimeout: 300,
+        poll: true
+      }
       if (ctx.isDev && ctx.isClient) {
         config.module.rules.push({
           enforce: 'pre',

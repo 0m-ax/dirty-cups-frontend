@@ -2,7 +2,7 @@
   <v-app dark>
     <v-navigation-drawer
       :mini-variant.sync="miniVariant"
-      :clipped="clipped"
+      :clipped="true"
       v-model="drawer"
       fixed
       app
