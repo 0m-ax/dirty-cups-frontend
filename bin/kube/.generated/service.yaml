@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: dirty-cups-frontend
+  name: dirty-cups-frontend
+spec:
+  ports:
+  - port: 3000
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    run: dirty-cups-frontend
+  type: NodePort
+status:
+  loadBalancer: {}
