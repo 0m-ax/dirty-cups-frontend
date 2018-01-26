@@ -1,30 +1,62 @@
 <template>
-  <v-layout column justify-center align-center>
-    <v-flex xs12 sm8 md6>
-      <div class="text-xs-center">
-        <img src="/v.png" alt="Vuetify.js" class="mb-5" />
-      </div>
-      <v-card>
-        <v-card-title class="headline">Welcome to the Vuetify + Nuxt.js template</v-card-title>
-        <v-card-text>
-          <p>Vuetify is a progressive Material Design component framework for Vue.js. It was designed to empower developers to create amazing applications.</p>
-          <p>For more information on Vuetify, check out the <a href="https://vuetifyjs.com" target="_blank">documentation</a>.</p>
-          <p>If you have questions, please join the official <a href="https://chat.vuetifyjs.com/" target="_blank" title="chat">discord</a>.</p>
-          <p>Find a bug? Report it on the github <a href="https://github.com/vuetifyjs/vuetify/issues" target="_blank" title="contribute">issue board</a>.</p>
-          <p>Thank you for developing with Vuetify and I look forward to bringing more exciting features in the future.</p>
-          <div class="text-xs-right">
-            <em><small>&mdash; John Leider</small></em>
-          </div>
-          <hr class="my-3">
-          <a href="https://nuxtjs.org/" target="_blank">Nuxt Documentation</a>
-          <br>
-          <a href="https://github.com/nuxt/nuxt.js" target="_blank">Nuxt GitHub</a>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="primary" flat nuxt to="/inspire">Continue</v-btn>
-        </v-card-actions>
-      </v-card>
+  <v-layout>
+    <v-flex xs12 sm12 md12>
+    <v-list>
+      <template v-for="item in items">
+        <v-list-tile v-bind:key="item.title" :href="'/report/'+item.id">
+          <v-list-tile-action>
+            <v-icon>{{item.icon}}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title v-html="item.title"></v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </template>
+    </v-list>
+    <v-btn
+      dark
+      fixed
+      bottom
+      right
+      fab
+      color='purple'
+      href='/report'
+    >
+      <v-icon>add</v-icon>
+    </v-btn>
     </v-flex>
   </v-layout>
 </template>
+<script>
+  import axios from 'axios'
+  export default {
+    data () {
+      return {
+        items: [
+          { icon: 'home', title: 'Indoor', subtitle: '/', id: '1' },
+          { icon: 'directions_car', title: 'Street', subtitle: '/', id: '2' },
+          { icon: 'hotel', title: 'Outcall', subtitle: '/', id: '3' }
+        ]
+      }
+    },
+    asyncData () {
+      return axios.post('http://dirty-cups.dev.maxc.in/report/searchReportsByContactHandle', {
+        report: {
+          handle: 'meme'
+        }
+      })
+        .then((resp) => resp.data)
+        .then((reports) => {
+          return {
+            items: reports.map((report) => {
+              return {
+                icon: report.workTypeID === 'in-call' ? 'home' : report.workTypeID === 'street' ? 'directions_car' : 'hotel',
+                title: (report.workTypeID === 'in-call' ? 'In Call' : report.workTypeID === 'street' ? 'Street' : 'Out Call') + '',
+                id: report.reportID
+              }
+            })
+          }
+        })
+    }
+  }
+</script>
