@@ -14,8 +14,8 @@ import {
   VForm,
   VSelect,
   VCheckbox,
-  VTabs
-
+  VTabs,
+  VDialog
 } from 'vuetify'
 
 Vue.use(Vuetify, {
@@ -36,6 +36,7 @@ Vue.use(Vuetify, {
     VList,
     VBtn,
     VIcon,
+    VDialog,
     VGrid,
     VToolbar,
     VTextField,

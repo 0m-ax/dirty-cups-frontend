@@ -3,7 +3,7 @@
     <v-flex xs12>
       <v-text-field
         v-model="searchText"
-        lable="Phonenumber, username, email"
+        lable="Phonenumber"
       ></v-text-field>
       <v-btn block @click="search">search</v-btn>
     </v-flex>
