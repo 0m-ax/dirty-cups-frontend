@@ -1,10 +1,10 @@
 <template>
   <v-app dark>
     <v-toolbar fixed app >
-      <v-btn icon class="hidden-xs-only">
+      <v-btn icon class="hidden-xs-only" href="/">
         <v-icon>arrow_back</v-icon>
       </v-btn>
-      <v-toolbar-title v-text="title"></v-toolbar-title>
+      <v-toolbar-title v-text="title" href="/"></v-toolbar-title>
     </v-toolbar>
     <v-content>
       <v-container>
